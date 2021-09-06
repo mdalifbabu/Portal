@@ -1,0 +1,31 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <h2><a class="article-title" href="{% url 'portal-course' %}">Courses Information</a></h2>
+        <p class="article-content">
+            <table class="center">
+                <tr>
+                    <th>Index</th>
+                    <th>Title</th>
+                    <th>Code</th>
+                    <th>Credit</th>
+                </tr>
+                {% for course in courses %}
+                    <tr>
+                        <th>{{ course.id }}</th>
+                        <th>{{ course.title }}</th>
+                        <th>{{ course.code}}</th>
+                        <th>{{ course.credit}}</th>
+                    </tr>
+                    {% with date_posted=course.date_posted %}{% endwith %}
+                {% endfor %}
+            </table>
+        </p>
+        <div class="article-metadata">
+            <a class="update" href="#">Last update:</a>
+            <small class="text-muted">{{ date_posted|date:"F d, Y | H:i:s A" }}</small>
+        </div>
+    </div>
+</article>
+{% endblock content %}

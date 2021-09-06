@@ -1,0 +1,32 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <h2><a class="article-title" href="{% url 'portal-teacher' %}">Teacher's Information</a></h2>
+        <p class="article-content">
+            <table class="center">
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>ID Number</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                </tr>
+                {% for teacher in teachers %}
+                    <tr>
+                        <th>{{ teacher.id }}</th>
+                        <th>{{ teacher.name }}</th>
+                        <th>{{ teacher.id_number }}</th>
+                        <th>{{ teacher.phone_number }}</th>
+                        <th>{{ teacher.email }}</th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </p>
+        <div class="article-metadata">
+            <a class="update" href="#">Last update:</a>
+            <small class="text-muted">{{ date_posted|date:"F d, Y | H:i:s A" }}</small>
+        </div>
+    </div>
+</article>
+{% endblock content %}
